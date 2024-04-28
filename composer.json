@@ -6,21 +6,30 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "codeat3/blade-phosphor-icons": "^2.2",
+        "filament/filament": "^3.2",
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
+        "laravel/pulse": "^1.0@beta",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
-        "livewire/volt": "^1.0"
+        "resend/resend-laravel": "^0.11.0",
+        "sentry/sentry-laravel": "^4.4",
+        "spatie/laravel-markdown": "^2.5"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "barryvdh/laravel-debugbar": "^3.13",
         "fakerphp/faker": "^1.23",
-        "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "spatie/laravel-ignition": "^2.4"
+        "pestphp/pest-plugin-type-coverage": "^2.8",
+        "spatie/laravel-ignition": "^2.4",
+        "larastan/larastan": "^2.6",
+        "laravel/pint": "^1.13"
     },
     "autoload": {
         "psr-4": {
@@ -37,7 +46,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -65,6 +75,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "prefer-stable": true
 }
