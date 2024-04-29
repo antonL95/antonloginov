@@ -105,7 +105,7 @@ jobs:
           script: |
             cd $RELEASE_PATH && git clone git@github.com:antonL95/antonloginov.git ./
             cd $RELEASE_PATH && composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-            cd $RELEASE_PATH && npm install --no-progress && npm run build
+            cd $RELEASE_PATH && /usr/local/lib/nodejs/node-v22.0.0-linux-x64/bin/npm install --no-progress && /usr/local/lib/nodejs/node-v22.0.0-linux-x64/bin/npm run build
             rm -rf $RELEASE_PATH/storage
             ln -s -f $STORAGE_PATH $RELEASE_PATH
             /usr/bin/php $RELEASE_PATH/artisan env:decrypt --key=$ENV_SECRET --env=production
