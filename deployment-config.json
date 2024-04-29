@@ -1,0 +1,11 @@
+[
+    {
+        "name": "linode",
+        "ip": "172.104.245.165",
+        "username": "antonloginov",
+        "port": "22",
+        "beforeHooks": "",
+        "afterHooks": "",
+        "path": "/home/antonloginov/www"
+    }
+]
