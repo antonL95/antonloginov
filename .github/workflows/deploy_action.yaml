@@ -37,19 +37,19 @@ jobs:
 #          make test
 
   activate-release:
-    name: "Activate release"
+    name: "Release"
     runs-on: ubuntu-latest
 #    needs: [ ci ]
-    env:
-      GITHUB_SHA: ${{ github.sha }}
-      RELEASE_PATH: /home/antonloginov/www/releases/$GITHUB_SHA
-      ACTIVE_RELEASE_PATH: /home/antonloginov/www/current
-      STORAGE_PATH: /home/antonloginov/www/storage
-      BASE_PATH: /home/antonloginov/www
-      ENV_SECRET: ${{ secrets.ENV_SECRET }}
     steps:
       - name: Release
         uses: appleboy/ssh-action@master
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          RELEASE_PATH: /home/antonloginov/www/releases/$GITHUB_SHA
+          ACTIVE_RELEASE_PATH: /home/antonloginov/www/current
+          STORAGE_PATH: /home/antonloginov/www/storage
+          BASE_PATH: /home/antonloginov/www
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
         with:
           host: 172.104.245.165
           username: antonloginov
