@@ -54,30 +54,27 @@ jobs:
       - name: Create release dir
         uses: appleboy/ssh-action@master
         with:
-          host: $SERVER_IP
-          username: $SERVER_USER
+          host: ${{ SERVER_IP }}
+          username: ${{ SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: $SERVER_PORT
           envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH,ENV_SECRET
           script: |
             mkdir -p "$BASE_PATH/releases/$GITHUB_SHA"
       - name: Clone the release
         uses: appleboy/ssh-action@master
         with:
-          host: $SERVER_IP
-          username: $SERVER_USER
+          host: ${{ SERVER_IP }}
+          username: ${{ SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: $SERVER_PORT
           envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH,ENV_SECRET
           script: |
             cd $RELEASE_PATH && git clone git@github.com:antonL95/antonloginov.git ./
       - name: Create directories
         uses: appleboy/ssh-action@master
         with:
-          host: $SERVER_IP
-          username: $SERVER_USER
+          host: ${{ SERVER_IP }}
+          username: ${{ SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: $SERVER_PORT
           envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH,ENV_SECRET
           script: |
             rm -rf $BASE_PATH/releases/$GITHUB_SHA/storage
@@ -89,10 +86,9 @@ jobs:
       - name: Activate release
         uses: appleboy/ssh-action@master
         with:
-          host: $SERVER_IP
-          username: $SERVER_USER
+          host: ${{ SERVER_IP }}
+          username: ${{ SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: $SERVER_PORT
           envs: GITHUB_SHA,RELEASE_PATH,ACTIVE_RELEASE_PATH,STORAGE_PATH,BASE_PATH,ENV_SECRET
           script: |
             cd $RELEASE_PATH && composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
