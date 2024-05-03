@@ -45,7 +45,7 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           GITHUB_SHA: ${{ github.sha }}
-          RELEASE_PATH: /home/antonloginov/www/releases/$GITHUB_SHA
+          RELEASE_PATH: /home/antonloginov/www/releases/${{ github.sha }}
           ACTIVE_RELEASE_PATH: /home/antonloginov/www/current
           STORAGE_PATH: /home/antonloginov/www/storage
           BASE_PATH: /home/antonloginov/www
