@@ -5,12 +5,12 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "codeat3/blade-phosphor-icons": "^2.2",
         "filament/filament": "^3.2",
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
-        "laravel/pulse": "^1.0@beta",
+        "laravel/pulse": "^1.1",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "resend/resend-laravel": "^0.11.0",
@@ -75,6 +75,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
