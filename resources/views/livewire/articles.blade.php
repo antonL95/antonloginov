@@ -4,7 +4,7 @@
 
 <x-simple-layout
     :title="__('Writing on software, finance, and other things.')"
-    :intro="__('All of my thoughts on programming, finance, productivity and other things that I find fascinating.')"
+    :intro="__('All of my thoughts on programming, finance, productivity, Tolkien and other things that I find fascinating.')"
 >
     <div class="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div class="flex max-w-3xl flex-col space-y-16">
