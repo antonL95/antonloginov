@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Vite;
 use Livewire\Component;
 
 class Projects extends Component
@@ -15,7 +16,7 @@ class Projects extends Component
             'projects' => [
                 [
                     'name' => 'Moneysky',
-                    'logo' => asset('assets/img/moneysky.svg'),
+                    'logo' => Vite::asset('resources/images/moneysky.svg'),
                     'description' => __(
                         'Automate your finance tracking and stay informed with real-time updates.',
                     ),
@@ -24,7 +25,7 @@ class Projects extends Component
                 ],
                 [
                     'name' => 'Artist\'s hero',
-                    'logo' => asset('assets/img/artistshero_logo.jpeg'),
+                    'logo' => Vite::asset('resources/images/artistshero_logo.jpeg'),
                     'description' => __(
                         'Rent art for your office from local artists',
                     ),

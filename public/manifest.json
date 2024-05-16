@@ -23,13 +23,13 @@
     "scope": "/",
     "screenshots": [
         {
-            "src": "/assets/img/screenshot_narrow.png",
+            "src": "/screenshot_narrow.png",
             "type": "image/png",
             "sizes": "1170x2531",
             "form_factor": "narrow"
         },
         {
-            "src": "/assets/img/screenshot_wide.png",
+            "src": "/screenshot_wide.png",
             "type": "image/png",
             "sizes": "2532x1170",
             "form_factor": "wide"

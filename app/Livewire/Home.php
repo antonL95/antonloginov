@@ -7,6 +7,7 @@ namespace App\Livewire;
 use App\Models\Article;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Vite;
 use Livewire\Component;
 
 final class Home extends Component
@@ -25,14 +26,14 @@ final class Home extends Component
                 'title' => 'Senior backend developer',
                 'start' => '2021',
                 'end' => 'present',
-                'logo' => asset('assets/img/gamee_logo.jpeg'),
+                'logo' => Vite::asset('resources/images/gamee_logo.jpeg'),
             ],
             [
                 'company' => 'Internet-handel',
                 'title' => 'Full-stack developer & Team lead',
                 'start' => '2015',
                 'end' => '2021',
-                'logo' => asset('assets/img/ih_logo.png'),
+                'logo' => Vite::asset('resources/images/ih_logo.png'),
             ],
         ]);
 
