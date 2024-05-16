@@ -15,11 +15,6 @@ class Articles extends Component
 
     public int $perPage = 10;
 
-    public function loadMore(): void
-    {
-        $this->perPage += 10;
-    }
-
     public function render(): View
     {
         return view('livewire.articles', [
