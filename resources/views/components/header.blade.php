@@ -162,7 +162,7 @@
                                                 wire:navigate
                                             >
                                                 <img
-                                                    src="{{ asset("/assets/img/profile.webp") }}"
+                                                    src="{{ Vite::asset("resources/images/profile.webp") }}"
                                                     class="h-9 w-9 rounded-full bg-zinc-100 object-cover dark:bg-zinc-800"
                                                     sizes="2.25rem"
                                                     alt=""
