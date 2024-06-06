@@ -29,11 +29,6 @@
             posthog.init('phc_FFB5FJOlNW8WJb2C6oykmN46C4YGLlKIKxpCcBGf8EO',{api_host:'https://eu.i.posthog.com'})
         </script>
 
-        <!-- PWA  -->
-        <meta name="theme-color" content="#ffffff" />
-        <link rel="apple-touch-icon" href="{{ asset('/apple-touch-icon.png') }}" />
-        <link rel="manifest" href="{{ asset('/manifest.json') }}" />
-
         <!-- Scripts -->
         @livewireStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -54,22 +49,5 @@
             </div>
         </div>
         @livewireScripts
-        <script src="{{ asset('/sw.js') }}"></script>
-        <script>
-            if ('serviceWorker' in navigator) {
-                // Register a service worker hosted at the root of the
-                // site using the default scope.
-                navigator.serviceWorker.register('/sw.js').then(
-                    (registration) => {
-                        console.log('Service worker registration succeeded:', registration);
-                    },
-                    (error) => {
-                        console.error(`Service worker registration failed: ${error}`);
-                    },
-                );
-            } else {
-                console.error('Service workers are not supported.');
-            }
-        </script>
     </body>
 </html>
