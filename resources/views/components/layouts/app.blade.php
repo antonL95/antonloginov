@@ -21,7 +21,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net" />
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link rel="icon" type="image/jpeg" href="{{ asset('apple-touch-icon.png') }}" />
+        <link rel="icon" type="image/jpeg" href="{{ asset('favicon.ico') }}" />
 
         <!-- prettier-ignore -->
         <script>
