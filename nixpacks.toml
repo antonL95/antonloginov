@@ -88,7 +88,7 @@ stderr_logfile=/var/log/worker-laravel.log
 "worker-pulse.conf" = '''
 [program:worker-pulse]
 process_name=%(program_name)s_%(process_num)02d
-command=php /app/artisan pulse:check --sleep=3 --tries=3 --max-time=3600
+command=php /app/artisan pulse:check
 autostart=true
 autorestart=true
 stopasgroup=true
