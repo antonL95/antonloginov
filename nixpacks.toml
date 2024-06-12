@@ -73,12 +73,12 @@ stderr_logfile=/var/log/worker-phpfpm.log
 "worker-laravel.conf" = '''
 [program:worker-laravel]
 process_name=%(program_name)s_%(process_num)02d
-command=bash -c 'sleep 60; exec php /app/artisan queue:work --sleep=3 --tries=3 --max-time=3600'
+command=php /app/artisan queue:work --sleep=3 --tries=3 --max-time=3600
 autostart=true
 autorestart=true
 stopasgroup=true
 killasgroup=true
-numprocs=8
+numprocs=1
 startsecs=0
 stopwaitsecs=3600
 stdout_logfile=/var/log/worker-laravel.log
@@ -88,12 +88,12 @@ stderr_logfile=/var/log/worker-laravel.log
 "worker-pulse.conf" = '''
 [program:worker-pulse]
 process_name=%(program_name)s_%(process_num)02d
-command=bash -c 'sleep 60; exec php /app/artisan pulse:check --sleep=3 --tries=3 --max-time=3600'
+command=php /app/artisan pulse:check --sleep=3 --tries=3 --max-time=3600
 autostart=true
 autorestart=true
 stopasgroup=true
 killasgroup=true
-numprocs=8
+numprocs=1
 startsecs=0
 stopwaitsecs=3600
 stdout_logfile=/var/log/worker-pulse.log
