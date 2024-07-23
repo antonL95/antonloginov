@@ -27,10 +27,19 @@ class Projects extends Component
                     'name' => 'Artist\'s hero',
                     'logo' => Vite::asset('resources/images/artistshero_logo.jpeg'),
                     'description' => __(
-                        'Rent art for your office from local artists',
+                        'Rent art for your office from local artists.',
                     ),
                     'link' => 'https://artistshero.com',
                     'link-label' => 'artistshero.com',
+                ],
+                [
+                    'name' => 'Tensen',
+                    'logo' => Vite::asset('resources/images/tensen_logo.png'),
+                    'description' => __(
+                        'AI spiritual companion and dream interpreter.',
+                    ),
+                    'link' => 'https://tensen.cz',
+                    'link-label' => 'tensen.cz',
                 ],
             ],
         ]);
