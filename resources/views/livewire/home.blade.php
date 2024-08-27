@@ -5,7 +5,7 @@
 <div>
     <x-container class="mt-9">
         <div class="max-w-2xl">
-            <h1 class="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+            <h1 class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
                 {{ __('Senior full-stack Laravel developer') }}
             </h1>
             <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
@@ -51,60 +51,101 @@
                     </x-card.card>
                 @endforeach
             </div>
-            <div class="space-y-10 lg:pl-16 xl:pl-24">
-                <div class="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-                    <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                        <x-phosphor-briefcase class="h-6 w-6 flex-none" />
-                        <span class="ml-3">{{ __('Work') }}</span>
-                    </h2>
-                    <ol class="my-6 space-y-4">
-                        @foreach ($roles as $role)
-                            <li class="flex gap-4">
-                                <div
-                                    class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
-                                >
-                                    <img
-                                        src="{{ $role['logo'] }}"
-                                        alt="{{ $role['company'] }}"
-                                        class="h-7 w-7 rounded-full"
-                                    />
-                                </div>
-                                <dl class="flex flex-auto flex-wrap gap-x-2">
-                                    <dt class="sr-only">Company</dt>
-                                    <dd class="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                                        {{ $role['company'] }}
-                                    </dd>
-                                    <dt class="sr-only">Role</dt>
-                                    <dd class="text-xs text-zinc-500 dark:text-zinc-400">
-                                        {{ $role['title'] }}
-                                    </dd>
-                                    <dt class="sr-only">Date</dt>
-                                    <dd
-                                        class="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                                        aria-label="{{ $role['start'] . ' until ' . $role['end'] }}"
+            <div class="flex flex-col gap-4">
+                <div class="space-y-10 lg:pl-16 xl:pl-24">
+                    <div class="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+                        <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                            <x-phosphor-briefcase class="h-6 w-6 flex-none" />
+                            <span class="ml-3">{{ __('Projects') }}</span>
+                        </h2>
+                        <ol class="my-6 space-y-4">
+                            @foreach ($projects as $project)
+                                <a href="{{ $project['link'] }}" class="block py-2">
+                                    <li class="flex gap-4">
+                                        <div
+                                            class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
+                                        >
+                                            <img
+                                                src="{{ $project['logo'] }}"
+                                                alt="{{ $project['name'] }}"
+                                                class="h-7 w-7 rounded-full"
+                                            />
+                                        </div>
+                                        <dl class="flex flex-auto flex-wrap gap-x-2">
+                                            <dt class="sr-only">Project name</dt>
+                                            <dd
+                                                class="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100"
+                                            >
+                                                {{ $project['name'] }}
+                                            </dd>
+                                            <dt class="sr-only">Project description</dt>
+                                            <dd class="text-xs text-zinc-500 dark:text-zinc-400">
+                                                {{ $project['description'] }}
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </a>
+                            @endforeach
+                        </ol>
+                    </div>
+                </div>
+                <div class="space-y-10 lg:pl-16 xl:pl-24">
+                    <div class="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+                        <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                            <x-phosphor-briefcase class="h-6 w-6 flex-none" />
+                            <span class="ml-3">{{ __('Work') }}</span>
+                        </h2>
+                        <ol class="my-6 space-y-4">
+                            @foreach ($roles as $role)
+                                <li class="flex gap-4">
+                                    <div
+                                        class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
                                     >
-                                        <time datetime="{{ $role['start'] }}">{{ $role['start'] }}</time>
-                                        <span aria-hidden="true">—</span>
-                                        <time datetime="{{ $role['end'] }}">
-                                            {{ $role['end'] }}
-                                        </time>
-                                    </dd>
-                                </dl>
-                            </li>
-                        @endforeach
-                    </ol>
-                    <x-button
-                        href="{{ asset('/assets/CV-downloadable.pdf') }}"
-                        download="Anton_Loginov_CV.pdf"
-                        variant="secondary"
-                        class="group mt-6 w-full"
-                        :no-wire-navigate="true"
-                    >
-                        {{ __('Download CV') }}
-                        <x-phosphor-arrow-down
-                            class="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50"
-                        />
-                    </x-button>
+                                        <img
+                                            src="{{ $role['logo'] }}"
+                                            alt="{{ $role['company'] }}"
+                                            class="h-7 w-7 rounded-full"
+                                        />
+                                    </div>
+                                    <dl class="flex flex-auto flex-wrap gap-x-2">
+                                        <dt class="sr-only">Company</dt>
+                                        <dd
+                                            class="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100"
+                                        >
+                                            {{ $role['company'] }}
+                                        </dd>
+                                        <dt class="sr-only">Role</dt>
+                                        <dd class="text-xs text-zinc-500 dark:text-zinc-400">
+                                            {{ $role['title'] }}
+                                        </dd>
+                                        <dt class="sr-only">Date</dt>
+                                        <dd
+                                            class="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+                                            aria-label="{{ $role['start'] . ' until ' . $role['end'] }}"
+                                        >
+                                            <time datetime="{{ $role['start'] }}">{{ $role['start'] }}</time>
+                                            <span aria-hidden="true">—</span>
+                                            <time datetime="{{ $role['end'] }}">
+                                                {{ $role['end'] }}
+                                            </time>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            @endforeach
+                        </ol>
+                        <x-button
+                            href="{{ asset('/assets/CV-downloadable.pdf') }}"
+                            download="Anton_Loginov_CV.pdf"
+                            variant="secondary"
+                            class="group mt-6 w-full"
+                            :no-wire-navigate="true"
+                        >
+                            {{ __('Download CV') }}
+                            <x-phosphor-arrow-down
+                                class="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50"
+                            />
+                        </x-button>
+                    </div>
                 </div>
             </div>
         </div>

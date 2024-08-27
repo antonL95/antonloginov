@@ -15,6 +15,7 @@ final class Home extends Component
     /**
      * @return array{
      *     roles: \Illuminate\Support\Collection<int, array{company: string, title: string, start: string, end: string, logo: string}>,
+     *     projects: \Illuminate\Support\Collection<int, array{name: string, logo: string, description: array<int, mixed>|string, link: string, link-label: string}>,
      *     articles: Collection<int, Article>
      *}
      */
@@ -37,14 +38,46 @@ final class Home extends Component
             ],
         ]);
 
-        return [
+        $projects = collect([
+            [
+                'name' => 'Moneysky',
+                'logo' => Vite::asset('resources/images/moneysky.svg'),
+                'description' => __(
+                    'Automate your finance tracking and stay informed with real-time updates.',
+                ),
+                'link' => 'https://moneysky.app',
+                'link-label' => 'moneysky.app',
+            ],
+            [
+                'name' => 'Artist\'s hero',
+                'logo' => Vite::asset('resources/images/artistshero_logo.jpeg'),
+                'description' => __(
+                    'Rent art for your office from local artists.',
+                ),
+                'link' => 'https://artistshero.com',
+                'link-label' => 'artistshero.com',
+            ],
+            [
+                'name' => 'Tensen',
+                'logo' => Vite::asset('resources/images/tensen_logo.png'),
+                'description' => __(
+                    'AI spiritual companion and dream interpreter.',
+                ),
+                'link' => 'https://tensen.cz',
+                'link-label' => 'tensen.cz',
+            ],
+        ]);
+
+        return [ // @phpstan-ignore-line
             'roles' => $roles,
+            'projects' => $projects,
             'articles' => Article::whereNotNull('published_at')
                 ->latest('published_at')
                 ->limit(3)
                 ->get(),
         ];
     }
+
 
     public function render(): View
     {
