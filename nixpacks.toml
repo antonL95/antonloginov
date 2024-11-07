@@ -1,6 +1,6 @@
 
     [phases.setup]
-    nixPkgs = ["...", "python311Packages.supervisor", "php83Packages.opcache"]
+    nixPkgs = ["...", "python311Packages.supervisor"]
 
     [phases.build]
     cmds = [
