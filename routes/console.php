@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schedule;
 use Sentry\Laravel\Integration;
 
-Artisan::command('inspire', function () {
-    Integration::captureUnhandledException(new \Exception('This is an inspiration message.'));
+Schedule::call(function () {
+    Log::error('here!');
 })->everyTwoMinutes();
