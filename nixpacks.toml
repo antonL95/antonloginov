@@ -89,7 +89,7 @@
 
     "php-fpm.conf" = '''
     [www]
-    listen = /var/run/php/php8.3-fpm.sock
+    listen = 127.0.0.1:9000
     user = www-data
     group = www-data
     listen.owner = www-data
@@ -167,7 +167,7 @@
             ) else ()
 
             location ~ \.php$ {
-                fastcgi_pass unix:/var/run/php/php8.3-fpm.sock;
+                fastcgi_pass 127.0.0.1:9000;
                 fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
                 include $!{nginx}/conf/fastcgi_params;
                 include $!{nginx}/conf/fastcgi.conf;
