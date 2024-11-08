@@ -10,7 +10,7 @@
         "chmod +x /assets/start.sh",
         "...",
         "chmod +x /assets/post-deploy.sh",
-        "./assets/post-deploy.sh",
+        "/assets/post-deploy.sh",
     ]
 
     [start]
