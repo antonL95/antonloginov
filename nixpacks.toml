@@ -88,6 +88,9 @@
     '''
 
     "php-fpm.conf" = '''
+    [unix_http_server]
+    file=/assets/php-fpm.sock
+
     [www]
     listen = /assets/php-fpm.sock
     user = www-data
