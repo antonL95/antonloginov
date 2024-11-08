@@ -187,9 +187,9 @@ php /app/artisan migrate --force
 php -d memory_limit=512M /app/artisan optimize
 
 mkdir -p /var/spool/cron/crontabs
-echo '* * * * * cd /app && php artisan schedule:run >> /dev/null 2>&1' > /var/spool/cron/crontabs/root
+echo '* * * * * cd /app && php artisan schedule:run >> /var/log/cron.log 2>&1' > /var/spool/cron/crontabs/root
 '''
 
 "crontab" = '''
-* * * * * cd /app && php artisan schedule:run >> /dev/null 2>&1
+* * * * * cd /app && php artisan schedule:run >> /var/log/cron.log 2>&1
 '''
