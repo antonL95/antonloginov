@@ -10,7 +10,7 @@ cmds = [
     "...",
     "chmod +x /assets/post-deploy.sh",
     "/assets/post-deploy.sh",
-    "echo "
+    "cp /assets/crontab /etc/cron.d/laravel-scheduler",
 ]
 
 [start]
@@ -181,12 +181,15 @@ http {
 }
 '''
 
+"crontab" = '''
+* * * * * cd /app && php artisan schedule:run >> /dev/null 2>&1
+'''
+
 "post-deploy.sh" = '''
 #!/bin/bash
 php /app/artisan migrate --force
 php -d memory_limit=512M /app/artisan optimize
-echo '* * * * * cd /app && php artisan schedule:run >> /dev/null 2>&1' > /etc/cron.d/laravel-scheduler
-chmod 0644 /etc/cron.d/laravel-scheduler
-crontab /etc/cron.d/laravel-scheduler
-cron -f &
+
+mkdir -p /var/spool/cron/crontabs
+echo '* * * * * cd /app && php artisan schedule:run >> /dev/null 2>&1' > /var/spool/cron/crontabs/root
 '''
