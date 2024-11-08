@@ -7,7 +7,6 @@
         "mkdir -p /etc/supervisor/conf.d/",
         "cp /assets/worker-*.conf /etc/supervisor/conf.d/",
         "cp /assets/supervisord.conf /etc/supervisord.conf",
-        "cp /assets/opcache.ini /etc/php.d/opcache.ini",
         "chmod +x /assets/start.sh",
         "...",
     ]
@@ -25,17 +24,6 @@
 
     # Start supervisor
     supervisord -c /etc/supervisord.conf -n
-    '''
-
-    "opcache.ini" = '''
-    [opcache]
-    zend_extension=opcache.so
-    opcache.enable=1
-    opcache.memory_consumption=128
-    opcache.interned_strings_buffer=8
-    opcache.max_accelerated_files=10000
-    opcache.revalidate_freq=2
-    opcache.validate_timestamps=1
     '''
 
     "supervisord.conf" = '''
