@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["...", "python311Packages.supervisor"]
+nixPkgs = ["...", "python311Packages.supervisor", "cron"]
 
 [phases.build]
 cmds = [
@@ -185,6 +185,8 @@ http {
 #!/bin/bash
 php /app/artisan migrate --force
 php -d memory_limit=512M /app/artisan optimize
-echo '* * * * * cd /app && php artisan schedule:run >> /dev/null 2>&1' | crontab -
-systemctl cron restart
+echo '* * * * * cd /app && php artisan schedule:run >> /dev/null 2>&1' > /etc/cron.d/laravel-scheduler
+chmod 0644 /etc/cron.d/laravel-scheduler
+crontab /etc/cron.d/laravel-scheduler
+cron -f &
 '''
