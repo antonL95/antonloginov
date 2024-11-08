@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Artisan;
+use Sentry\Laravel\Integration;
 
 Artisan::command('inspire', function () {
-    throw new \Exception('This is an inspiration message.');
-})->everyMinute();
+    Integration::captureUnhandledException(new \Exception('This is an inspiration message.'));
+})->everyTwoMinutes();
