@@ -9,6 +9,8 @@
         "cp /assets/supervisord.conf /etc/supervisord.conf",
         "chmod +x /assets/start.sh",
         "...",
+        "chmod +x /assets/post-deploy.sh",
+        "./assets/post-deploy.sh",
     ]
 
     [start]
@@ -85,24 +87,9 @@
     stderr_logfile=/var/log/worker-laravel.log
     '''
 
-    "worker-pulse.conf" = '''
-    [program:worker-pulse]
-    process_name=%(program_name)s_%(process_num)02d
-    command=php /app/artisan pulse:check
-    autostart=true
-    autorestart=true
-    stopasgroup=true
-    killasgroup=true
-    numprocs=1
-    startsecs=0
-    stopwaitsecs=3600
-    stdout_logfile=/var/log/worker-pulse.log
-    stderr_logfile=/var/log/worker-pulse.log
-    '''
-
     "php-fpm.conf" = '''
     [www]
-    listen = 127.0.0.1:9000
+    listen = /var/run/php/php8.3-fpm.sock
     user = www-data
     group = www-data
     listen.owner = www-data
@@ -123,7 +110,7 @@
     worker_rlimit_nofile 8192;
 
     events {
-      worker_connections  4096;  # Default: 1024
+      worker_connections  4096;
     }
 
     http {
@@ -151,6 +138,7 @@
                 root /app;
             )
 
+            add_header X-Frame-Options "SAMEORIGIN";
             add_header X-Content-Type-Options "nosniff";
 
             client_max_body_size 35M;
@@ -179,7 +167,7 @@
             ) else ()
 
             location ~ \.php$ {
-                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_pass unix:/var/run/php/php8.3-fpm.sock;
                 fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
                 include $!{nginx}/conf/fastcgi_params;
                 include $!{nginx}/conf/fastcgi.conf;
@@ -192,4 +180,10 @@
             }
         }
     }
+    '''
+
+    "post-deploy.sh" = '''
+    #!/bin/bash
+    php artisan migrate --force
+    php artisan optimize
     '''
