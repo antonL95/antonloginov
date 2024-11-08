@@ -6,6 +6,7 @@ services:
         networks:
             - web-public
         volumes:
+            - .:/var/www/html
             - "storage_private:/var/www/html/storage/app/private/"
             - "storage_public:/var/www/html/storage/app/public/"
             - "storage_sessions:/var/www/html/storage/framework/sessions"
