@@ -89,11 +89,12 @@
 
     "php-fpm.conf" = '''
     [www]
-    listen = 127.0.0.1:9000
+    listen = /assets/php-fpm.sock
     user = www-data
     group = www-data
     listen.owner = www-data
     listen.group = www-data
+    listen.mode = 0660
     pm = dynamic
     pm.max_children = 50
     pm.min_spare_servers = 4
@@ -167,7 +168,7 @@
             ) else ()
 
             location ~ \.php$ {
-                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_pass unix:/assets/php-fpm.sock;
                 fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
                 include $!{nginx}/conf/fastcgi_params;
                 include $!{nginx}/conf/fastcgi.conf;
