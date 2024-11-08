@@ -10,6 +10,7 @@ cmds = [
     "...",
     "chmod +x /assets/post-deploy.sh",
     "/assets/post-deploy.sh",
+    "echo "
 ]
 
 [start]
@@ -184,4 +185,6 @@ http {
 #!/bin/bash
 php /app/artisan migrate --force
 php -d memory_limit=512M /app/artisan optimize
+echo '* * * * * cd /app && php artisan schedule:run >> /dev/null 2>&1' | crontab -
+systemctl cron restart
 '''
