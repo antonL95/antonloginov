@@ -75,9 +75,14 @@ stderr_logfile=/var/log/worker-phpfpm.log
 "worker-cront.conf" = '''
 [program:worker-cron]
 process_name=%(program_name)s_%(process_num)02d
-command=cron /assets/laravel-scheduler
+command=php artisan schedule:run-cronless
 autostart=true
 autorestart=true
+stopasgroup=true
+killasgroup=true
+numprocs=1
+startsecs=0
+stopwaitsecs=3600
 stdout_logfile=/var/log/worker-cron.log
 stderr_logfile=/var/log/worker-cron.log
 '''
