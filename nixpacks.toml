@@ -72,6 +72,16 @@ stdout_logfile=/var/log/worker-phpfpm.log
 stderr_logfile=/var/log/worker-phpfpm.log
 '''
 
+"worker-cront.conf" = '''
+[program:worker-cron]
+process_name=%(program_name)s_%(process_num)02d
+command=cron /assets/laravel-scheduler
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/worker-cron.log
+stderr_logfile=/var/log/worker-cron.log
+'''
+
 "worker-laravel.conf" = '''
 [program:worker-laravel]
 process_name=%(program_name)s_%(process_num)02d
