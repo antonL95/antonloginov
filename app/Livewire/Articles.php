@@ -9,7 +9,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Articles extends Component
+final class Articles extends Component
 {
     use WithPagination;
 

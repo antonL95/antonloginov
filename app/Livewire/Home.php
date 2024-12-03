@@ -78,7 +78,6 @@ final class Home extends Component
         ];
     }
 
-
     public function render(): View
     {
         return view('livewire.home', $this->with());

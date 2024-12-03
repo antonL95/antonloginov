@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Vite;
 use Livewire\Component;
 
-class Projects extends Component
+final class Projects extends Component
 {
     public function render(): View
     {

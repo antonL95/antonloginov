@@ -8,7 +8,7 @@ use App\Models\Article;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class ArticleDetail extends Component
+final class ArticleDetail extends Component
 {
     public Article $article;
 

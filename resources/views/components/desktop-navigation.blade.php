@@ -17,10 +17,5 @@
                 {{ __('Projects') }}
             </x-nav-item>
         </li>
-        <li>
-            <x-nav-item :active="request()->routeIs('uses')" :href="route('uses')">
-                {{ __('Uses') }}
-            </x-nav-item>
-        </li>
     </ul>
 </nav>

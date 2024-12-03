@@ -54,7 +54,6 @@
                 <li><a href="{{ route('about') }}" class="block py-2" wire:navigate>About</a></li>
                 <li><a href="{{ route('articles') }}" class="block py-2" wire:navigate>Articles</a></li>
                 <li><a href="{{ route('projects') }}" class="block py-2" wire:navigate>Projects</a></li>
-                <li><a href="{{ route('uses') }}" class="block py-2" wire:navigate>Uses</a></li>
             </ul>
         </nav>
     </div>

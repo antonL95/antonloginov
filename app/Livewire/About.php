@@ -7,7 +7,7 @@ namespace App\Livewire;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class About extends Component
+final class About extends Component
 {
     public function render(): View
     {
