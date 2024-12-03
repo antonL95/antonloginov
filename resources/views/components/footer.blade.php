@@ -26,12 +26,6 @@
                                 >
                                     {{ __('Projects') }}
                                 </a>
-                                <a
-                                    href="{{ route('uses') }}"
-                                    class="transition hover:text-teal-500 dark:hover:text-teal-400"
-                                >
-                                    {{ __('Uses') }}
-                                </a>
                             </div>
                             <p class="text-sm text-zinc-400 dark:text-zinc-500">
                                 &copy; {{ now()->format('Y') }} Anton Loginov. All rights reserved.
