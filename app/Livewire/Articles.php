@@ -18,7 +18,7 @@ final class Articles extends Component
     public function render(): View
     {
         return view('livewire.articles', [
-            'articles' => Article::whereNotNull('published_at')
+            'articles' => Article::query()->whereNotNull('published_at')
                 ->latest()
                 ->simplePaginate($this->perPage),
         ]);

@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ArticleResource\Pages;
+use App\Filament\Resources\ArticleResource\Pages\CreateArticle;
+use App\Filament\Resources\ArticleResource\Pages\EditArticle;
+use App\Filament\Resources\ArticleResource\Pages\ListArticles;
 use App\Models\Article;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Forms\Set;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
@@ -20,12 +25,12 @@ class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('title')
                     ->afterStateUpdated(
                         function (?string $state, ?string $old, Set $set) {
@@ -38,7 +43,7 @@ class ArticleResource extends Resource
                     )
                     ->required(),
                 TextInput::make('subtitle'),
-                MarkdownEditor::make('content')
+                RichEditor::make('content')
                     ->required()
                     ->columnSpanFull(),
                 TextInput::make('slug')->readOnly(),
@@ -50,20 +55,20 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('subtitle'),
-                Tables\Columns\TextColumn::make('content')->limit(50),
-                Tables\Columns\TextColumn::make('published_at')->dateTime(),
+                TextColumn::make('title'),
+                TextColumn::make('subtitle'),
+                TextColumn::make('content')->limit(50),
+                TextColumn::make('published_at')->dateTime(),
             ])
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -71,9 +76,9 @@ class ArticleResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArticles::route('/'),
-            'create' => Pages\CreateArticle::route('/create'),
-            'edit' => Pages\EditArticle::route('/{record}/edit'),
+            'index' => ListArticles::route('/'),
+            'create' => CreateArticle::route('/create'),
+            'edit' => EditArticle::route('/{record}/edit'),
         ];
     }
 }

@@ -4,27 +4,28 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Gate;
+use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
+    public function register(): void {}
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        Gate::define('viewPulse', static fn (User $user) => $user->canViewPulse());
-        URL::forceScheme('https');
+        Model::automaticallyEagerLoadRelationships();
+        Model::preventLazyLoading(!$this->app->isProduction());
+        Model::shouldBeStrict(!$this->app->isProduction());
+        Model::unguard();
+
+        Date::use(CarbonImmutable::class);
+        DB::prohibitDestructiveCommands($this->app->isProduction());
+        Password::defaults(fn () => $this->app->isProduction() ? Password::min(8)->uncompromised() : null);
+        URL::forceHttps();
     }
 }

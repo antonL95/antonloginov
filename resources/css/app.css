@@ -1,50 +1,68 @@
-@tailwind base;
-@tailwind components;
-pre[class*='language-'] {
-    color: theme('colors.zinc.100');
+@import 'tailwindcss';
+
+@plugin "@tailwindcss/typography";
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+@source '../lang/**/*.php';
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
-.token.tag,
-.token.class-name,
-.token.selector,
-.token.selector .class,
-.token.selector.class,
-.token.function {
-    color: theme('colors.pink.400');
-}
+@layer components {
+  pre[class*='language-'] {
+    color: var(--color-zinc-100);
+  }
 
-.token.attr-name,
-.token.keyword,
-.token.rule,
-.token.pseudo-class,
-.token.important {
-    color: theme('colors.zinc.300');
-}
+  .token.tag,
+  .token.class-name,
+  .token.selector,
+  .token.selector .class,
+  .token.selector.class,
+  .token.function {
+    color: var(--color-pink-400);
+  }
 
-.token.module {
-    color: theme('colors.pink.400');
-}
+  .token.attr-name,
+  .token.keyword,
+  .token.rule,
+  .token.pseudo-class,
+  .token.important {
+    color: var(--color-zinc-300);
+  }
 
-.token.attr-value,
-.token.class,
-.token.string,
-.token.property {
-    color: theme('colors.teal.300');
-}
+  .token.module {
+    color: var(--color-pink-400);
+  }
 
-.token.punctuation,
-.token.attr-equals {
-    color: theme('colors.zinc.500');
-}
+  .token.attr-value,
+  .token.class,
+  .token.string,
+  .token.property {
+    color: var(--color-teal-300);
+  }
 
-.token.unit,
-.language-css .token.function {
-    color: theme('colors.sky.200');
-}
+  .token.punctuation,
+  .token.attr-equals {
+    color: var(--color-zinc-500);
+  }
 
-.token.comment,
-.token.operator,
-.token.combinator {
-    color: theme('colors.zinc.400');
+  .token.unit,
+  .language-css .token.function {
+    color: var(--color-sky-200);
+  }
+
+  .token.comment,
+  .token.operator,
+  .token.combinator {
+    color: var(--color-zinc-400);
+  }
 }
-@tailwind utilities;
