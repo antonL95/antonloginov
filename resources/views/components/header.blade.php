@@ -177,7 +177,6 @@
                                 </div>
                                 <div class="flex justify-end md:flex-1">
                                     <div class="pointer-events-auto">
-                                        <x-theme-switcher />
                                     </div>
                                 </div>
                             </div>

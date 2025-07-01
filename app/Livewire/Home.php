@@ -23,10 +23,17 @@ final class Home extends Component
     {
         $roles = collect([
             [
+                'company' => 'FTMO',
+                'title' => 'Senior backend developer',
+                'start' => '2025',
+                'end' => '2025',
+                'logo' => Vite::asset('resources/images/ftmo.png'),
+            ],
+            [
                 'company' => 'Gamee',
                 'title' => 'Senior backend developer',
                 'start' => '2021',
-                'end' => 'present',
+                'end' => '2025',
                 'logo' => Vite::asset('resources/images/gamee_logo.jpeg'),
             ],
             [

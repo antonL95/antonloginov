@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html
-    class="h-full antialiased"
+    class="h-full antialiased dark"
     lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-    x-data="{
-        theme: $persist('light'),
-        toggleTheme() {
-            this.theme = this.theme === 'light' ? 'dark' : 'light'
-        },
-    }"
-    :class="theme === 'light' ? 'light' : 'dark'"
-    x-cloak
 >
     <head>
         <meta charset="utf-8" />
@@ -22,11 +14,6 @@
         <link rel="preconnect" href="https://fonts.bunny.net" />
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="icon" type="image/jpeg" href="{{ asset('favicon.ico') }}" />
-
-        <script defer data-domain="antonloginov.com" src="https://analytics.antonloginov.com/js/script.js"></script>
-
-        <!-- Scripts -->
-        @livewireStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="flex h-full bg-zinc-50 dark:bg-black">
@@ -44,6 +31,6 @@
                 <x-footer />
             </div>
         </div>
-        @livewireScripts
+        @livewireScriptConfig
     </body>
 </html>
