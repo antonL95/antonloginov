@@ -23,10 +23,6 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Create .env file from secret
-        run: echo "${{ secrets.PRODUCTION_ENV }}" > .env
-        shell: bash # Specify bash for reliable execution
-
       # Build the Docker image
       - name: Build Docker image
         run: |
