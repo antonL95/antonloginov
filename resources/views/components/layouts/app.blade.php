@@ -15,6 +15,9 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="icon" type="image/jpeg" href="{{ asset('favicon.ico') }}" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @production
+            <script defer src="https://analytics.antonloginov.com/script.js" data-website-id="5af97c82-cce5-4442-9c7d-456e04be008d"></script>
+        @endproduction
     </head>
     <body class="flex h-full bg-zinc-50 dark:bg-black">
         <div class="flex w-full">
