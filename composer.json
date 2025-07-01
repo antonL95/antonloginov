@@ -61,6 +61,10 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
+        "test:lint": [
+            "pint --test",
+            "@test:refactor"
+        ],
         "refactor": "rector",
         "test:refactor": "rector --dry-run",
         "test:types": "phpstan analyse",
