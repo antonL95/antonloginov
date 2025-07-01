@@ -8,6 +8,9 @@ use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
+ */
 class ArticleFactory extends Factory
 {
     protected $model = Article::class;
@@ -17,10 +20,10 @@ class ArticleFactory extends Factory
         return [
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'title' => $this->faker->words(random_int(3, 5), true),
-            'slug' => $this->faker->slug(),
+            'title' => fake()->words(random_int(3, 5), true),
+            'slug' => fake()->slug(),
             'subtitle' => null,
-            'content' => $this->faker->paragraphs(10, true),
+            'content' => fake()->paragraphs(10, true),
             'published_at' => Carbon::now(),
         ];
     }
