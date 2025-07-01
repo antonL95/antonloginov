@@ -71,7 +71,7 @@ final class Home extends Component
         return [ // @phpstan-ignore-line
             'roles' => $roles,
             'projects' => $projects,
-            'articles' => Article::whereNotNull('published_at')
+            'articles' => Article::query()->whereNotNull('published_at')
                 ->latest('published_at')
                 ->limit(3)
                 ->get(),
