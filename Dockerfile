@@ -3,6 +3,12 @@ FROM serversideup/php:8.4-fpm-nginx-alpine
 # Enable Opcache
 ENV PHP_OPCACHE_ENABLE=1
 
+# Add environment variables for Composer authentication
+ARG FLUX_USERNAME
+ARG FLUX_LICENSE_KEY
+ENV FLUX_USERNAME=${FLUX_USERNAME}
+ENV FLUX_LICENSE_KEY=${FLUX_LICENSE_KEY}
+
 # Switch to root user for installation tasks
 USER root
 
@@ -19,6 +25,9 @@ COPY --chown=www-data:www-data . /var/www/html
 
 # Switch back to www-data user
 USER www-data
+
+# Set Composer credentials using environment variables
+RUN composer config http-basic.composer.fluxui.dev $FLUX_USERNAME $FLUX_LICENSE_KEY
 
 # Install Composer dependencies
 RUN composer install --no-interaction --optimize-autoloader --no-dev

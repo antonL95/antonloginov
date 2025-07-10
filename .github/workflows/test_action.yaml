@@ -28,6 +28,9 @@ jobs:
       - name: Copy Environment File
         run: cp .env.testing .env
 
+      - name: Add Flux Credentials Loaded From ENV
+        run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
+
       - name: Composer install
         run: |
           composer install -q --no-interaction --prefer-dist --optimize-autoloader

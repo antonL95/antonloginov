@@ -28,6 +28,8 @@ jobs:
         run: |
           docker build \
           --no-cache \
+          --build-arg FLUX_USERNAME=${{ secrets.FLUX_USERNAME }} \
+          --build-arg FLUX_LICENSE_KEY=${{ secrets.FLUX_LICENSE_KEY }} \
           -t ${{ secrets.REGISTRY_URL }}/antonloginov/antonloginov:latest .
 
       # Push the Docker image to the self-hosted registry
