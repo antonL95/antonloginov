@@ -7,7 +7,6 @@ namespace App\Livewire;
 use App\Models\Article;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Vite;
 use Livewire\Component;
 
 final class Home extends Component
@@ -27,37 +26,37 @@ final class Home extends Component
                 'title' => 'Senior backend developer',
                 'start' => '2025',
                 'end' => '2025',
-                'logo' => Vite::asset('resources/images/ftmo.png'),
+                'logo' => asset('assets/images/ftmo.png'),
             ],
             [
                 'company' => 'Gamee',
                 'title' => 'Senior backend developer',
                 'start' => '2021',
                 'end' => '2025',
-                'logo' => Vite::asset('resources/images/gamee_logo.jpeg'),
+                'logo' => asset('assets/images/gamee_logo.jpeg'),
             ],
             [
                 'company' => 'Internet-handel',
                 'title' => 'Full-stack developer & Team lead',
                 'start' => '2015',
                 'end' => '2021',
-                'logo' => Vite::asset('resources/images/ih_logo.png'),
+                'logo' => asset('assets/images/ih_logo.png'),
             ],
         ]);
 
         $projects = collect([
             [
-                'name' => 'Moneysky',
-                'logo' => Vite::asset('resources/images/moneysky.svg'),
+                'name' => 'Tensen',
+                'logo' => asset('assets/images/tensen_logo.png'),
                 'description' => __(
-                    'Automate your finance tracking and stay informed with real-time updates.',
+                    'AI spiritual companion and dream interpreter.',
                 ),
-                'link' => 'https://moneysky.app',
-                'link-label' => 'moneysky.app',
+                'link' => 'https://tensen.cz',
+                'link-label' => 'tensen.cz',
             ],
             [
                 'name' => 'Artist\'s hero',
-                'logo' => Vite::asset('resources/images/artistshero_logo.jpeg'),
+                'logo' => asset('assets/images/artistshero_logo.jpeg'),
                 'description' => __(
                     'Rent art for your office from local artists.',
                 ),
@@ -65,13 +64,22 @@ final class Home extends Component
                 'link-label' => 'artistshero.com',
             ],
             [
-                'name' => 'Tensen',
-                'logo' => Vite::asset('resources/images/tensen_logo.png'),
+                'name' => 'Moneysky',
+                'logo' => asset('assets/images/moneysky.svg'),
                 'description' => __(
-                    'AI spiritual companion and dream interpreter.',
+                    'Automate your finance tracking and stay informed with real-time updates.',
                 ),
-                'link' => 'https://tensen.cz',
-                'link-label' => 'tensen.cz',
+                'link' => 'https://moneysky.app',
+                'link-label' => 'moneysky.app',
+            ],
+            [
+                'name' => 'SatuHati',
+                'logo' => asset('assets/images/satuhati.png'),
+                'description' => __(
+                    'Charity website for charity organization that operates in Indonesia',
+                ),
+                'link' => 'https://satuhaticharity.cz/',
+                'link-label' => 'satuhaticharity.cz',
             ],
         ]);
 
