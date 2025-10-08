@@ -4,6 +4,7 @@ USER root
 RUN install-php-extensions intl bcmath
 COPY --chown=www-data:www-data . /var/www/html
 USER www-data
+RUN composer config http-basic.composer.fluxui.dev $FLUX_USERNAME $FLUX_LICENSE_KEY
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 RUN rm -rf /var/www/html/.composer/cache
 
