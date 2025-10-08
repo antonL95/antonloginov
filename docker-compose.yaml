@@ -87,27 +87,3 @@ services:
     environment:
       <<: *app-environment
       PHP_FPM_POOL_NAME: "app"
-
-  worker:
-    <<: [*worker-image, *app-volumes]
-    command: [ "php", "/var/www/html/artisan", "queue:work", "--tries=3" ]
-    environment:
-      <<: *app-environment
-      PHP_FPM_POOL_NAME: "app_queue_worker"
-    deploy:
-      replicas: ${QUEUE_WORKERS:-1}
-    healthcheck:
-      test: [ "CMD", "healthcheck-queue" ]
-      start_period: 10s
-    stop_signal: SIGTERM
-
-  scheduler:
-    <<: [*worker-image, *app-volumes]
-    command: [ "php", "/var/www/html/artisan", "schedule:work" ]
-    environment:
-      <<: *app-environment
-      PHP_FPM_POOL_NAME: "app_scheduler"
-    stop_signal: SIGTERM
-    healthcheck:
-      test: [ "CMD", "healthcheck-schedule" ]
-      start_period: 10s
