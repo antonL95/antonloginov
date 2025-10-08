@@ -22,6 +22,13 @@ final class Home extends Component
     {
         $roles = collect([
             [
+                'company' => 'Captiwate',
+                'title' => 'Senior Laravel fullstack developer',
+                'start' => '2025',
+                'end' => 'present',
+                'logo' => asset('assets/images/captiwate.png'),
+            ],
+            [
                 'company' => 'FTMO',
                 'title' => 'Senior backend developer',
                 'start' => '2025',

@@ -1,8 +1,16 @@
 version: '3.8'
 
-x-app-image: &app-image
-  image: 'docker.antonloginov.com/antonloginov/antonloginov:latest'
-  pull_policy: always
+x-web-image: &web-image
+  build:
+    context: .
+    dockerfile: Dockerfile
+    target: web
+
+x-worker-image: &worker-image
+  build:
+    context: .
+    dockerfile: Dockerfile
+    target: worker
 
 x-app-volumes: &app-volumes
   volumes:
@@ -70,10 +78,36 @@ x-app-environment: &app-environment
   DO_URL: '${DO_URL}'
   VITE_APP_NAME: '${APP_NAME}'
   SENTRY_LARAVEL_DSN: '${SENTRY_LARAVEL_DSN}'
+  FLUX_USERNAME: '${FLUX_USERNAME}'
+  FLUX_LICENSE_KEY: '${FLUX_LICENSE_KEY}'
 
 services:
   app:
-    <<: [*app-image, *app-volumes]
+    <<: [*web-image, *app-volumes]
     environment:
       <<: *app-environment
       PHP_FPM_POOL_NAME: "app"
+
+  worker:
+    <<: [*worker-image, *app-volumes]
+    command: [ "php", "/var/www/html/artisan", "queue:work", "--tries=3" ]
+    environment:
+      <<: *app-environment
+      PHP_FPM_POOL_NAME: "app_queue_worker"
+    deploy:
+      replicas: ${QUEUE_WORKERS:-1}
+    healthcheck:
+      test: [ "CMD", "healthcheck-queue" ]
+      start_period: 10s
+    stop_signal: SIGTERM
+
+  scheduler:
+    <<: [*worker-image, *app-volumes]
+    command: [ "php", "/var/www/html/artisan", "schedule:work" ]
+    environment:
+      <<: *app-environment
+      PHP_FPM_POOL_NAME: "app_scheduler"
+    stop_signal: SIGTERM
+    healthcheck:
+      test: [ "CMD", "healthcheck-schedule" ]
+      start_period: 10s

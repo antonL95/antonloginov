@@ -18,7 +18,7 @@
                             {{ $article->published_at->diffForHumans() }}
                         </x-card.card-eyebrow>
                         <x-card.card-description>
-                            {{ Str::limit($article->content) }}
+                            {{ Str::limit($article->subtitle) }}
                         </x-card.card-description>
                         <x-card.card-cta>
                             {{ __('Read more') }}

@@ -1,0 +1,21 @@
+name: Trigger Coolify Deployment
+
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Trigger Coolify Deployment
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.COOLIFY_BEARER_TOKEN }}" \
+            ${{ secrets.COOLIFY_WEBHOOK_URL }}

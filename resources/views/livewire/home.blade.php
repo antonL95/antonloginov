@@ -46,7 +46,7 @@
                         <x-card.card-eyebrow :time="true" datetime="{{ $article->published_at }}" :decorate="true">
                             {{ $article->published_at->diffForHumans() }}
                         </x-card.card-eyebrow>
-                        <x-card.card-description>{{ Str::limit($article->content) }}</x-card.card-description>
+                        <x-card.card-description>{{ Str::limit($article->subtitle) }}</x-card.card-description>
                         <x-card.card-cta>{{ __('Read article') }}</x-card.card-cta>
                     </x-card.card>
                 @endforeach

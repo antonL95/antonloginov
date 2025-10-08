@@ -28,6 +28,7 @@ class Article extends Model
     {
         return [
             'published_at' => 'datetime',
+            'content' => 'array',
         ];
     }
 }

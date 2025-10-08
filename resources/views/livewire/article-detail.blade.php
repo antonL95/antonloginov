@@ -1,3 +1,4 @@
+@php use Filament\Forms\Components\RichEditor\RichContentRenderer; @endphp
 <x-container class="mt-16 lg:mt-32">
     <div class="xl:relative">
         <div class="mx-auto max-w-2xl">
@@ -24,9 +25,7 @@
                     </time>
                 </header>
                 <div class="prose mt-8 dark:prose-invert">
-                    <x-markdown theme="github-dark">
-                        {!! $article->content !!}
-                    </x-markdown>
+                    {{ RichContentRenderer::make($article->content) }}
                 </div>
             </article>
         </div>
