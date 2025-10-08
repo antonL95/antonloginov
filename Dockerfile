@@ -1,5 +1,10 @@
 FROM serversideup/php:8.4-cli-alpine AS worker
 ENV PHP_OPCACHE_ENABLE=1
+# Add environment variables for Composer authentication
+ARG FLUX_USERNAME
+ARG FLUX_LICENSE_KEY
+ENV FLUX_USERNAME=${FLUX_USERNAME}
+ENV FLUX_LICENSE_KEY=${FLUX_LICENSE_KEY}
 USER root
 RUN install-php-extensions intl bcmath
 COPY --chown=www-data:www-data . /var/www/html
@@ -10,6 +15,11 @@ RUN rm -rf /var/www/html/.composer/cache
 
 FROM serversideup/php:8.4-fpm-nginx-alpine AS web
 ENV PHP_OPCACHE_ENABLE=1
+# Add environment variables for Composer authentication
+ARG FLUX_USERNAME
+ARG FLUX_LICENSE_KEY
+ENV FLUX_USERNAME=${FLUX_USERNAME}
+ENV FLUX_LICENSE_KEY=${FLUX_LICENSE_KEY}
 USER root
 RUN install-php-extensions intl bcmath
 RUN apk add --no-cache \
