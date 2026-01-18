@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-layout.header>
     <x-container class="mt-16 sm:mt-32">
         <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
             <div class="lg:order-first lg:row-span-2">
@@ -11,4 +11,4 @@
             </div>
         </div>
     </x-container>
-</x-layouts.app>
+</x-layout.header>
